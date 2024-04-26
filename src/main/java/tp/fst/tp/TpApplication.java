@@ -1,6 +1,5 @@
 package tp.fst.tp;
 
-import com.sun.jdi.LongValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,8 +9,6 @@ import tp.fst.tp.repository.ProductRepository;
 
 import java.util.List;
 
-import static com.sun.jdi.LongValue.*;
-import static java.lang.Long.*;
 
 @SpringBootApplication
 public class TpApplication implements CommandLineRunner {
@@ -24,9 +21,9 @@ public class TpApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        productRepository.save(new Product(null,"Computer", 2000,20));
-        productRepository.save(new Product(null,"Printer", 500,5));
-        productRepository.save(new Product(null,"Smart Phone", 900,30));
+        //productRepository.save(new Product(null,"Computer", 2000,20));
+        //productRepository.save(new Product(null,"Printer", 500,5));
+        //productRepository.save(new Product(null,"Smart Phone", 900,30));
         List<Product> products = productRepository.findAll();
         products.forEach(product ->{
             System.out.println(product.toString());
@@ -38,5 +35,16 @@ public class TpApplication implements CommandLineRunner {
         System.out.println(product.getPrice());
         System.out.println(product.getQuantity());
         System.out.println("********************************");
+
+        List<Product> productList = productRepository.findByNameContains("C");
+        productList.forEach(p ->{
+            System.out.println(p);
+        });
+        System.out.println("---------------------------------");
+        List<Product> productList2 = productRepository.search("%C%");
+        productList2.forEach(p ->{
+            System.out.println(p);
+        });
+
     }
 }
