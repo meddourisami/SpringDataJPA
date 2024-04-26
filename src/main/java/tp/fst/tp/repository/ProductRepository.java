@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findByNameContains(String keyword);
+    List<Product> findByPriceGreaterThan(double price);
     @Query("select p from Product p where p.name like :x")
     List<Product> search(@Param("x")String keyword);
 }

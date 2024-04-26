@@ -45,6 +45,11 @@ public class TpApplication implements CommandLineRunner {
         productList2.forEach(p ->{
             System.out.println(p);
         });
+        System.out.println("---------------------------------");
+        List<Product> productList3 = productRepository.findByPriceGreaterThan(500);
+        productList3.forEach(p ->{
+            System.out.println(p);
+        });
 
     }
 }
